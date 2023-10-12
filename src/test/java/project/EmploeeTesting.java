@@ -27,4 +27,17 @@ public class EmploeeTesting {
         assertThat(resSave).isNotNull();
     }
 
+    @Test
+    public void canFineByFirstnameAndLastName(){
+        String firstName = "FirstName", lastName = "LastName";
+
+        var emploee = Emploees.builder().firstname(firstName)
+                .lastname(lastName).build();
+        emploeeRepositories.save(emploee);
+
+        var resFind = emploeeRepositories.countByFirstNameAndLastName(firstName, lastName);
+
+        assertThat(resFind).isEqualTo(1);
+    }
+
 }

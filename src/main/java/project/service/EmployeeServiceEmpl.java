@@ -10,6 +10,7 @@ public class EmployeeServiceEmpl implements EmployeeService {
 
     private EmploeeRepositories emploeeRepositories;
     public EmployeeServiceEmpl(EmploeeRepositories repository){
+
         emploeeRepositories = repository;
     }
 
@@ -33,6 +34,10 @@ public class EmployeeServiceEmpl implements EmployeeService {
         var count = emploeeRepositories.count();
         if ( !(count < ConfigProject.getLimitAmount())){
             throw new EmployeeStorageIsFullException("Переполнение базы");
+        }
+
+        if (emploeeRepositories.countByFirstNameAndLastName(emploee.getFirstname(), emploee.getLastname())>0){
+            throw new EmployeeAlreadyAddedException("Повторный ввод данных");
         }
 
         return emploeeRepositories.save(emploee);

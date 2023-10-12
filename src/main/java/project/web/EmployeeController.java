@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import project.models.Emploees;
 import project.service.EmployeeServiceEmpl;
 
-// /emploee/all   /emploee/find
+
 @RestController
 @RequestMapping(path = "/emploee" )
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
     private EmployeeServiceEmpl employeeServiceEmpl;
